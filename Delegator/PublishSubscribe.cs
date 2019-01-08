@@ -12,15 +12,19 @@ namespace Delegator
 
         public void Post(string title, string content)
         {
-            if (NewPost != null)
-            {
-                NewPost.Invoke(this, EventArgs.Empty);
-            }
+            //save the post
+
+            //notify the NewPost event subscribers
+            //if (NewPost != null)
+            //{
+            //    NewPost.Invoke(this, EventArgs.Empty);
+            //}
+            NewPost?.Invoke(this, EventArgs.Empty);
         }
 
     }
 
-    public class Reader
+    public class Reader : IDisposable
     {
         private Blog _blog;
 
@@ -30,6 +34,12 @@ namespace Delegator
 
             blog.NewPost += Blog_NewPost;
 
+        }
+
+        public void Dispose()
+        {
+            _blog.NewPost -= Blog_NewPost;
+            _blog = null;
         }
 
         private void Blog_NewPost(object sender, EventArgs e)
