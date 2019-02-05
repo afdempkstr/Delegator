@@ -11,6 +11,17 @@ namespace Delegator
 
         static void Main(string[] args)
         {
+            var printing = new Printing();
+            printing.PrintFancyText("μια φορά και ένα καιρό...");
+            printing.PrintFancyText("μια φορά και ένα καιρό...", Printing.PrintingStyle.PlainText);
+            printing.PrintFancyText("μια φορά και ένα καιρό...", Printing.PrintingStyle.ColoredText, Printing.PrintingStyle.FramedText);
+
+            printing.PrintFancyText("μια φορά και ένα καιρό...", Printing.PrintingStyle.ColoredText, Printing.PrintingStyle.PlainText, Printing.PrintingStyle.ColoredText, Printing.PrintingStyle.FramedText, Printing.PrintingStyle.ColoredText, Printing.PrintingStyle.PlainText);
+
+
+
+            Console.Read();
+
             operations = new Dictionary<string, Calculator>();
 
             operations.Add("+", Add);
