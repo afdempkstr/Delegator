@@ -8,11 +8,32 @@ namespace Delegator
 {
     public class Blog
     {
+        // title => content
+        private Dictionary<string, string> _posts = new Dictionary<string, string>();
+
         public event EventHandler NewPost;
+
+        public string this[string title]
+        {
+            get
+            {
+                if (_posts.ContainsKey(title))
+                {
+                    return _posts[title];
+                }
+
+                return null;
+                //_posts.TryGetValue(title, out var _content);
+                //return _content;
+            }
+            set { _posts[title] = value; }
+        }
+
 
         public void Post(string title, string content)
         {
             //save the post
+            _posts[title] = content;
 
             //notify the NewPost event subscribers
             //if (NewPost != null)

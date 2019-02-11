@@ -63,6 +63,8 @@ namespace Delegator
 
             blog.Post("test", "test content");
 
+            Console.WriteLine(blog["test"]);
+
         }
 
         static double Add(double x, double y)
